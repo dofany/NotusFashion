@@ -26,12 +26,12 @@
 					<form role="form" method="post" autocomplete="off">
 						<div class="input_area">
 							<label for="userId">아이디</label> <input type="email" id="userId"
-								name="userId" required="required" value="kuzuro@gmail.com" />
+								name="userId" required="required" value="dofany@nate.com" />
 						</div>
 
 						<div class="input_area">
 							<label for="userPass">패스워드</label> <input type="password"
-								id="userPass" name="userPass" required="required" value="1111" />
+								id="userPass" name="userPass" required="required" value="0516" />
 						</div>
 
 						<button type="submit" id="signin_btn" name="signin_btn">로그인</button>
