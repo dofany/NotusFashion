@@ -151,6 +151,8 @@ textarea#gdsDes {
 
 				<form role="form" method="post" autocomplete="off">
 
+					<input type="hidden" name="gdsNum" value="${goods.gdsNum}" />
+
 					<div class="inputArea">
 						<label>1차 분류</label> <select class="category1">
 							<option value="">전체</option>
@@ -158,33 +160,38 @@ textarea#gdsDes {
 							<option value="">전체</option>
 						</select>
 					</div>
-
 					<div class="inputArea">
 						<label for="gdsName">상품명</label> <input type="text" id="gdsName"
-							name="gdsName" />
+							name="gdsName" value="${goods.gdsName}" />
 					</div>
-
 					<div class="inputArea">
 						<label for="gdsPrice">상품가격</label> <input type="text"
-							id="gdsPrice" name="gdsPrice" />
+							id="gdsPrice" name="gdsPrice" value="${goods.gdsPrice}" />
 					</div>
-
 					<div class="inputArea">
 						<label for="gdsStock">상품수량</label> <input type="text"
-							id="gdsStock" name="gdsStock" />
+							id="gdsStock" name="gdsStock" value="${goods.gdsStock}" />
 					</div>
-
 					<div class="inputArea">
 						<label for="gdsDes">상품소개</label>
-						<textarea rows="5" cols="50" id="gdsDes" name="gdsDes"></textarea>
+						<textarea rows="5" cols="50" id="gdsDes" name="gdsDes">${goods.gdsDes}</textarea>
 					</div>
-
 					<div class="inputArea">
-						<button type="submit" id="register_Btn" class="btn btn-primary">등록</button>
+						<button type="submit" id="update_Btn" class="btn btn-primary">완료</button>
+						<button type="button" id="back_Btn" class="btn btn-warning">취소</button>
+
+						<script>
+							$("#back_Btn").click(function() {
+								//history.back();
+								location.href = "/admin/goods/view?n=" + $
+								{
+									goods.gdsNum
+								}
+								;
+							});
+						</script>
 					</div>
-
 				</form>
-
 			</div>
 		</section>
 
