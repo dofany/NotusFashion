@@ -144,8 +144,7 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/goods/ckUpload", method = RequestMethod.POST)
-	public void postCKEditorImgUpload(HttpServletRequest req, HttpServletResponse res,
-			@RequestParam MultipartFile upload) throws Exception {
+	public void postCKEditorImgUpload(HttpServletRequest req, HttpServletResponse res,@RequestParam MultipartFile upload) throws Exception {
 		logger.info("post CKEditor img upload");
 
 		UUID uid = UUID.randomUUID();
