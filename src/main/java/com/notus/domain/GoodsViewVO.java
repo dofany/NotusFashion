@@ -4,6 +4,8 @@ import java.util.Date;
 
 public class GoodsViewVO {
 
+	
+
 	private int gdsNum;
 	private String gdsName;
 	private String cateCode;
@@ -16,6 +18,8 @@ public class GoodsViewVO {
 	private String cateCodeRef;
 	private String cateName;
 
+	private String gdsThumbImg;
+	
 	public int getGdsNum() {
 		return gdsNum;
 	}
@@ -94,6 +98,14 @@ public class GoodsViewVO {
 
 	public void setCateName(String cateName) {
 		this.cateName = cateName;
+	}
+	
+	public String getGdsThumbImg() {
+		return gdsThumbImg;
+	}
+
+	public void setGdsThumbImg(String gdsThumbImg) {
+		this.gdsThumbImg = gdsThumbImg;
 	}
 
 }

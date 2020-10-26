@@ -187,7 +187,17 @@ textarea#gdsDes {
 					</div>
 
 					<div class="inputArea">
-						<label for="gdsDes">상품소개</label> <span>${goods.gdsDes}</span>
+						<label for="gdsDes">상품소개</label> 
+						<div class="gdsDes">${goods.gdsDes}</div>
+						
+					</div>
+					<div class="inputArea">
+						<label for="gdsImg">이미지</label>
+						<p>원본 이미지</p>
+						<img src="${goods.gdsImg}" class="oriImg" />
+
+						<p>썸네일</p>
+						<img src="${goods.gdsThumbImg}" class="thumbImg" />
 					</div>
 
 					<div class="inputArea">
