@@ -188,7 +188,7 @@ textarea#gdsDes {
 								resize_enaleb : false,
 								enterMode : CKEDITOR.ENTER_BR,
 								shiftEnterMode : CKEDITOR.ENTER_P,
-								filebrowserUploadUrl : "/admin/goods/ckUpload"
+								filebrowserUploadUrl : "${pageContext.request.contextPath}/admin/goods/ckUpload"
 							};
 
 							CKEDITOR.replace("gdsDes", ckeditor_config);

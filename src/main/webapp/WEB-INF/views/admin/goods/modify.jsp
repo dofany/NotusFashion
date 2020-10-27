@@ -186,15 +186,14 @@ textarea#gdsDes {
 								resize_enaleb : false,
 								enterMode : CKEDITOR.ENTER_BR,
 								shiftEnterMode : CKEDITOR.ENTER_P,
-								filebrowserUploadUrl : "/admin/goods/ckUpload"
+								filebrowserUploadUrl : "${pageContext.request.contextPath}/admin/goods/ckUpload"
 							};
 
 							CKEDITOR.replace("gdsDes", ckeditor_config);
 						</script>
 					</div>
 					<div class="inputArea">
-						<label for="gdsImg">이미지</label> <input type="file" id="gdsImg"
-							name="file" />
+						<label for="gdsImg">이미지</label> <input type="file" />
 						<div class="select_img">
 							<img src="${goods.gdsImg}" /> <input type="hidden" name="gdsImg"
 								value="${goods.gdsImg}" /> <input type="hidden"
