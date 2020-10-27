@@ -64,13 +64,15 @@ public class AdminController {
 
 		if (file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
 			fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
-		} else {
-			fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
-		}
+			vo.setGdsImg(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+			vo.setGdsThumbImg(
+					File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
 
-		vo.setGdsImg(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
-		vo.setGdsThumbImg(
-				File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+		} else {
+			fileName = File.separator + "images" + File.separator + "none.png";
+			vo.setGdsImg(fileName);
+			vo.setGdsThumbImg(fileName);
+		}
 
 		adminService.register(vo);
 		return "redirect:/admin/index";
@@ -79,7 +81,7 @@ public class AdminController {
 	@RequestMapping(value = "/goods/list", method = RequestMethod.GET)
 	public void getGoodsList(Model model) throws Exception {
 		logger.info("get goods list");
-		List<GoodsVO> list = adminService.goodslist();
+		List<GoodsViewVO> list = adminService.goodslist();
 
 		model.addAttribute("list", list);
 	}
@@ -144,7 +146,8 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/goods/ckUpload", method = RequestMethod.POST)
-	public void postCKEditorImgUpload(HttpServletRequest req, HttpServletResponse res,@RequestParam MultipartFile upload) throws Exception {
+	public void postCKEditorImgUpload(HttpServletRequest req, HttpServletResponse res,
+			@RequestParam MultipartFile upload) throws Exception {
 		logger.info("post CKEditor img upload");
 
 		UUID uid = UUID.randomUUID();
@@ -170,7 +173,7 @@ public class AdminController {
 			String fileUrl = "/ckUpload/" + uid + "_" + fileName; // 작성화면
 
 			// 업로드시 메시지 출력
-			printWriter.println("{\"filename\" : \""+fileName+"\", \"uploaded\" : 1, \"url\":\""+fileUrl+"\"}");
+			printWriter.println("{\"filename\" : \"" + fileName + "\", \"uploaded\" : 1, \"url\":\"" + fileUrl + "\"}");
 			printWriter.flush();
 
 		} catch (IOException e) {

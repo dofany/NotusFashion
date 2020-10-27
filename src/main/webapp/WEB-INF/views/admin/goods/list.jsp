@@ -154,7 +154,7 @@ footer#footer ul li {
 				<table>
 					<thead>
 						<tr>
-							<th>번호</th>
+							<th>썸네일</th>
 							<th>이름</th>
 							<th>카테고리</th>
 							<th>가격</th>
@@ -165,9 +165,12 @@ footer#footer ul li {
 					<tbody>
 						<c:forEach items="${list}" var="list">
 							<tr>
-								<td>${list.gdsNum}</td>
-								<td><a href="/admin/goods/view?n=${list.gdsNum}">${list.gdsName}</a></td>
-								<td>${list.cateCode}</td>
+								<td><img src="${list.gdsThumbImg}"></td>
+								<td><a href="/admin/goods/view?n=${list.gdsNum}">${list.gdsName}</a>
+								</td>
+								<td>
+									<!-- ${list.cateCode} --> ${list.cateName}
+								</td>
 								<td><fmt:formatNumber value="${list.gdsPrice}"
 										pattern="###,###,###" /></td>
 								<td>${list.gdsStock}</td>
@@ -175,6 +178,8 @@ footer#footer ul li {
 										pattern="yyyy-MM-dd" /></td>
 							</tr>
 						</c:forEach>
+
+
 					</tbody>
 				</table>
 

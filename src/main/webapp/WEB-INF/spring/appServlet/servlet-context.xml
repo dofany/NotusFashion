@@ -32,9 +32,9 @@
 	<!-- 업로드 패스 설정 -->
 	<beans:bean class="java.lang.String" id="uploadPath">
 		<beans:constructor-arg
-			value="/Users/dofany/Documents/workspace-spring-tool-suite-4-4.8.0.RELEASE/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/notus/resources"/>
+			value="/Users/dofany/Documents/workspace-spring-tool-suite-4-4.8.0.RELEASE/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/notus/resources" />
 	</beans:bean>
-	
+
 
 
 	<!-- 일반 파일 업로드 경로 -->
@@ -50,6 +50,8 @@
 	<!-- ck에디터 파일 업로드 경로 -->
 	<resources mapping="/ckUpload/**"
 		location="/resources/ckUpload/" />
+
+	<resources mapping="/images/**" location="/resources/images/" />
 
 	<beans:bean id="AdminInterceptor"
 		class="com.notus.interceptor.AdminInterceptor" />
