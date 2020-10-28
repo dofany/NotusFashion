@@ -6,17 +6,37 @@
 
 	<!-- 카테고리별 상품 리스트 : 1차 분류 -->
 	<select id="list_1" resultType="com.notus.domain.GoodsViewVO">
-		select g.gdsNum, g.gdsName, g.cateCode, c.cateCodeRef, c.cateName, gdsPrice,
-		gdsStock, gdsDes, gdsDate, g.gdsImg, g.gdsThumbImg from tbl_goods g
-		inner join goods_category c on g.cateCode = c.cateCode where
-		g.cateCode = #{cateCode} or c.cateCodeRef = #{cateCodeRef}
+		select g.gdsNum, g.gdsName,
+		g.cateCode, c.cateCodeRef, c.cateName, gdsPrice,
+		gdsStock, gdsDes,
+		gdsDate, g.gdsImg, g.gdsThumbImg from tbl_goods g
+		inner join
+		goods_category c on g.cateCode = c.cateCode where
+		g.cateCode =
+		#{cateCode} or c.cateCodeRef = #{cateCodeRef}
 	</select>
 
 	<!-- 카테고리별 상품 리스트 : 2차 분류 -->
 	<select id="list_2" resultType="com.notus.domain.GoodsViewVO">
-		select g.gdsNum, g.gdsName, g.cateCode, c.cateCodeRef, c.cateName, gdsPrice,
-		gdsStock, gdsDes, gdsDate, g.gdsImg, g.gdsThumbImg from tbl_goods g
-		inner join goods_category c on g.cateCode = c.cateCode where
-		g.cateCode = #{cateCode}
+		select g.gdsNum, g.gdsName,
+		g.cateCode, c.cateCodeRef, c.cateName, gdsPrice,
+		gdsStock, gdsDes,
+		gdsDate, g.gdsImg, g.gdsThumbImg from tbl_goods g
+		inner join
+		goods_category c on g.cateCode = c.cateCode where
+		g.cateCode =
+		#{cateCode}
+	</select>
+
+	<insert id="registReply">
+		insert into tbl_reply (gdsNum, userId, repNum,
+		repCon) values (#{gdsNum}, #{userId}, tbl_reply_seq.nextval,
+		#{repCon})
+	</insert>
+
+	<select id="replyList" resultType="com.notus.domain.ReplyListVO">
+		select r.gdsNum, r.userId, r.repNum, r.repCon, r.repDate, m.userName from
+		tbl_reply r inner join tbl_member m on r.userId = m.userId where
+		gdsNum = #{gdsNum}
 	</select>
 </mapper>
