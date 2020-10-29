@@ -25,6 +25,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.notus.domain.CategoryVO;
 import com.notus.domain.GoodsVO;
 import com.notus.domain.GoodsViewVO;
+import com.notus.domain.OrderListVO;
+import com.notus.domain.OrderVO;
+import com.notus.domain.ReplyListVO;
 import com.notus.service.AdminService;
 import com.notus.utils.UploadFileUtils;
 
@@ -192,5 +195,52 @@ public class AdminController {
 		}
 
 		return;
+	}
+
+	@RequestMapping(value = "/shop/orderList", method = RequestMethod.GET)
+	public void getOrderList(Model model) throws Exception {
+		logger.info("get order list");
+
+		List<OrderVO> orderList = adminService.orderList();
+
+		model.addAttribute("orderList", orderList);
+	}
+
+	@RequestMapping(value = "/shop/orderView", method = RequestMethod.GET)
+	public void getOrderList(@RequestParam("n") String orderId, OrderVO order, Model model) throws Exception {
+		logger.info("get order view");
+
+		order.setOrderId(orderId);
+		List<OrderListVO> orderView = adminService.orderView(order);
+
+		model.addAttribute("orderView", orderView);
+	}
+
+	@RequestMapping(value = "/shop/orderView", method = RequestMethod.POST)
+	public String delivery(OrderVO order) throws Exception {
+		logger.info("post order view");
+
+		adminService.delivery(order);
+
+		List<OrderListVO> orderView = adminService.orderView(order);
+
+		GoodsVO goods = new GoodsVO();
+
+		for (OrderListVO i : orderView) {
+			goods.setGdsNum(i.getGdsNum());
+			goods.setGdsStock(i.getCartStock());
+			adminService.changeStock(goods);
+		}
+
+		return "redirect:/admin/shop/orderView?n=" + order.getOrderId();
+	}
+
+	@RequestMapping(value = "/shop/allReply", method = RequestMethod.GET)
+	public void getAllReply(Model model) throws Exception {
+		logger.info("get all reply");
+
+		List<ReplyListVO> reply = adminService.allReply();
+
+		model.addAttribute("reply", reply);
 	}
 }

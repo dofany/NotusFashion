@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
 <title>NotusFashion</title>
@@ -165,6 +167,27 @@ footer#footer div#footer_box {
 	padding: 0 20px;
 }
 </style>
+<style>
+/*
+ section#content ul li { display:inline-block; margin:10px; }
+ section#content div.goodsThumb img { width:200px; height:200px; }
+ section#content div.goodsName { padding:10px 0; text-align:center; }
+ section#content div.goodsName a { color:#000; }
+*/
+section#content ul li {
+	border: 5px solid #eee;
+	padding: 10px 20px;
+	margin-bottom: 20px;
+}
+
+section#content .orderList span {
+	font-size: 20px;
+	font-weight: bold;
+	display: inline-block;
+	width: 90px;
+	margin-right: 10px;
+}
+</style>
 </head>
 <body>
 	<div id="root">
@@ -180,28 +203,43 @@ footer#footer div#footer_box {
 			</div>
 		</nav>
 
-		<section id="content">
-			<form role="form" method="post" autocomplete="off">
-				<div class="input_area">
-					<label for="userId">아이디</label> <input type="email" id="userId"
-						name="userId" required="required" value="dofany@nate.com" />
-				</div>
+		<section id="container">
+			<div id="container_box">
 
-				<div class="input_area">
-					<label for="userPass">패스워드</label> <input type="password"
-						id="userPass" name="userPass" required="required" value="0516" />
-				</div>
+				<section id="content">
 
-				<button type="submit" id="signin_btn" name="signin_btn">로그인</button>
+					<ul class="orderList">
+						<c:forEach items="${orderList}" var="orderList">
+							<li>
+								<div>
+									<p>
+										<span>주문번호</span><a
+											href="/shop/orderView?n=${orderList.orderId}">${orderList.orderId}</a>
+									</p>
+									<p>
+										<span>수령인</span>${orderList.orderRec}</p>
+									<p>
+										<span>주소</span>(${orderList.userAddr1}) ${orderList.userAddr2}
+										${orderList.userAddr3}
+									</p>
+									<p>
+										<span>가격</span>
+										<fmt:formatNumber pattern="###,###,###"
+											value="${orderList.amount}" />
+										원
+									</p>
+								</div>
+							</li>
+						</c:forEach>
+					</ul>
 
-				<c:if test="${msg == false}">
-					<p style="color: #f00;">로그인에 실패했습니다.</p>
-				</c:if>
+				</section>
 
-			</form>
-			<aside id="aside">
-				<%@ include file="../include/aside.jsp"%>
-			</aside>
+				<aside id="aside">
+					<%@ include file="../include/aside.jsp"%>
+				</aside>
+
+			</div>
 		</section>
 		<footer id="footer">
 			<div id="footer_box">

@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import com.notus.domain.CategoryVO;
 import com.notus.domain.GoodsVO;
 import com.notus.domain.GoodsViewVO;
+import com.notus.domain.OrderListVO;
+import com.notus.domain.OrderVO;
+import com.notus.domain.ReplyListVO;
 import com.notus.persistence.AdminDAO;
 
 @Service
@@ -46,5 +49,35 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public void goodsDelete(int gdsNum) throws Exception{
 		dao.goodsDelete(gdsNum);
+	}
+	
+	@Override
+	public List<OrderVO> orderList() throws Exception{
+		return dao.orderList();
+	}
+	
+	@Override
+	public List<OrderListVO> orderView(OrderVO order) throws Exception{
+		return dao.orderView(order);
+	}
+	
+	@Override
+	public void delivery(OrderVO order) throws Exception{
+		dao.delivery(order);
+	}
+	
+	@Override
+	public void changeStock(GoodsVO goods) throws Exception{
+		dao.changeStock(goods);
+	}
+	
+	@Override
+	public List<ReplyListVO> allReply() throws Exception{
+		return dao.allReply();
+	}
+	
+	@Override
+	public void deleteReply(int repNum) throws Exception{
+		dao.deleteReply(repNum);
 	}
 }
