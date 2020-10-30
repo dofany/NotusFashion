@@ -4,6 +4,7 @@
 <head>
 <title>NotusFashion</title>
 <style>
+
 body {
 	margin: 0;
 	padding: 0;
@@ -48,117 +49,25 @@ section#container {
 	
 }
 
-aside#aside h3 {
-	font-size: 22px;
-	margin-bottom: 20px;
-	text-align: center;
-}
-
-aside#aside li {
-	font-size: 16px;
-	text-align: center;
-}
-
-aside#aside li a {
-	color: #000;
-	display: block;
-	padding: 10px 0;
-}
-
-aside#aside li a:hover {
-	text-decoration: none;
-	background: #eee;
-}
-
-aside#aside li {
-	position: relative;
-}
-
-aside#aside li:hover {
-	background: #eee;
-}
-
-aside#aside li>ul.low {
-	display: none;
-	position: absolute;
-	top: 0;
-	left: 180px;
-}
-
-aside#aside li:hover>ul.low {
-	display: block;
-}
-
-aside#aside li:hover>ul.low li a {
-	background: #eee;
-	border: 1px solid #eee;
-}
-
-aside#aside li:hover>ul.low li a:hover {
-	background: #fff;
-}
-
-aside#aside li>ul.low li {
-	width: 180px;
-}
-
-aside#aside h3 {
-	font-size: 22px;
-	margin-bottom: 20px;
-	text-align: center;
-}
-
-aside#aside li {
-	font-size: 16px;
-	text-align: center;
-}
-
-aside#aside li a {
-	color: #000;
-	display: block;
-	padding: 10px 0;
-}
-
-aside#aside li a:hover {
-	text-decoration: none;
-	background: #eee;
-}
-
-aside#aside li {
-	position: relative;
-}
-
-aside#aside li:hover {
-	background: #eee;
-}
-
-aside#aside li>ul.low {
-	display: none;
-	position: absolute;
-	top: 0;
-	left: 180px;
-}
-
-aside#aside li:hover>ul.low {
-	display: block;
-}
-
-aside#aside li:hover>ul.low li a {
-	background: #eee;
-	border: 1px solid #eee;
-}
-
-aside#aside li:hover>ul.low li a:hover {
-	background: #fff;
-}
-
-aside#aside li>ul.low li {
-	width: 180px;
-}
-
 section#content {
 	float: right;
-	width: 700px;
+	width: 90px;
+	position : absolute;
+	width : 100px;
+	height : 100px;
+	top : 30%;
+	left : 50%;
+	margin : -50px 0 0 -50px;
+	
+}
+.input_area{
+
+}
+#signup_btn{
+	
+	background: var(--naver-green-color);
+	color: black;
+	border: solid 1px var(--naver-green-border-color);
 }
 
 aside#aside {
@@ -288,35 +197,45 @@ footer#footer div#footer_box {
 			</div>
 		</nav>
 
-		<section id="content">
-			<form role="form" method="post" autocomplete="off">
-				<div class="input_area">
-					<label for="userId">아이디</label> <input type="email" id="userId"
-						name="userId" placeholder="example@email.com" required="required" />
-				</div>
+		<section id="container">
+			<div id="container_box">
+	
+				<section id="content">
+				
+					<form role="form" method="post" autocomplete="off">
+						<h2>회원가입</h2>
+						<div class="input_area">
+							<label for="userId">아이디</label> <input type="email" id="userId"
+								name="userId" placeholder="이메일을 입력해주세요" required="required" />
+						</div>
 
-				<div class="input_area">
-					<label for="userPass">패스워드</label> <input type="password"
-						id="userPass" name="userPass" required="required" />
-				</div>
+						<div class="input_area">
+							<label for="userPass">패스워드</label> <input type="password"
+								id="userPass" name="userPass" placeholder="패스워드를 입력해주세요" required="required" />
+						</div>
 
-				<div class="input_area">
-					<label for="userName">닉네임</label> <input type="text" id="userName"
-						name="userName" placeholder="닉네임을 입력해주세요" required="required" />
-				</div>
+						<div class="input_area">
+							<label for="userName">닉네임</label> <input type="text"
+								id="userName" name="userName" placeholder="닉네임을 입력해주세요"
+								required="required" />
+						</div>
 
-				<div class="input_area">
-					<label for="userPhon">연락처</label> <input type="text" id="userPhon"
-						name="userPhon" placeholder="연락처를 입력해주세요" required="required" />
-				</div>
+						<div class="input_area">
+							<label for="userPhon">연락처</label> <input type="text"
+								id="userPhon" name="userPhon" placeholder="연락처를 입력해주세요"
+								required="required" />
+						</div>
 
-				<button type="submit" id="signup_btn" name="signup_btn">회원가입</button>
+						<button type="submit" id="signup_btn" name="signup_btn">회원가입</button>
 
-			</form>
+					</form>
+				</section>
 
-			<aside id="aside">
-				<%@ include file="../include/aside.jsp"%>
-			</aside>
+				<aside id="aside">
+					<%@ include file="../include/aside.jsp"%>
+				</aside>
+
+			</div>
 		</section>
 		<footer id="footer">
 			<div id="footer_box">

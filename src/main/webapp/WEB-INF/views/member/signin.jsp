@@ -4,6 +4,7 @@
 <head>
 <title>NotusFashion</title>
 <style>
+
 body {
 	margin: 0;
 	padding: 0;
@@ -50,7 +51,23 @@ section#container {
 
 section#content {
 	float: right;
-	width: 700px;
+	width: 90px;
+	position : absolute;
+	width : 100px;
+	height : 100px;
+	top : 30%;
+	left : 50%;
+	margin : -50px 0 0 -50px;
+	
+}
+.input_area{
+
+}
+#signup_btn{
+	
+	background: var(--naver-green-color);
+	color: black;
+	border: solid 1px var(--naver-green-border-color);
 }
 
 aside#aside {
@@ -180,28 +197,37 @@ footer#footer div#footer_box {
 			</div>
 		</nav>
 
-		<section id="content">
-			<form role="form" method="post" autocomplete="off">
-				<div class="input_area">
-					<label for="userId">아이디</label> <input type="email" id="userId"
-						name="userId" required="required" value="dofany@nate.com" />
-				</div>
+		<section id="container">
+			<div id="container_box">
 
-				<div class="input_area">
-					<label for="userPass">패스워드</label> <input type="password"
-						id="userPass" name="userPass" required="required" value="0516" />
-				</div>
+				<section id="content">
+					<form role="form" method="post" autocomplete="off">
+						<h2>로그인</h2>
+						<div class="input_area">
+							<label for="userId">아이디</label> <input type="email" id="userId"
+								name="userId" required="required" />
+						</div>
 
-				<button type="submit" id="signin_btn" name="signin_btn">로그인</button>
+						<div class="input_area">
+							<label for="userPass">패스워드</label> <input type="password"
+								id="userPass" name="userPass" required="required" />
+						</div>
 
-				<c:if test="${msg == false}">
-					<p style="color: #f00;">로그인에 실패했습니다.</p>
-				</c:if>
+						<button type="submit" id="signin_btn" name="signin_btn">로그인</button>
 
-			</form>
-			<aside id="aside">
-				<%@ include file="../include/aside.jsp"%>
-			</aside>
+						<c:if test="${msg == false}">
+							<p style="color: #f00;">로그인에 실패했습니다.</p>
+						</c:if>
+
+
+					</form>
+				</section>
+
+				<aside id="aside">
+					<%@ include file="../include/aside.jsp"%>
+				</aside>
+
+			</div>
 		</section>
 		<footer id="footer">
 			<div id="footer_box">
