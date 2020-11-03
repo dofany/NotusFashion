@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
 <title>NotusFashion</title>
@@ -110,7 +108,6 @@ aside#aside .menu1 {
 	text-align: center;
 }
 
-
 aside#aside .menu2 {
 	font-size: 22px;
 	margin-bottom: 20px;
@@ -165,6 +162,13 @@ aside#aside li>ul.low li {
 	width: 180px;
 }
 
+aside#aside li>ul.low {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 180px;
+}
+
 footer#footer {
 	margin-top: 100px;
 	border-radius: 50px 50px 0 0;
@@ -172,26 +176,6 @@ footer#footer {
 
 footer#footer div#footer_box {
 	padding: 0 20px;
-}
-</style>
-<style>
-section#content ul li {
-	display: inline-block;
-	margin: 10px;
-}
-
-section#content div.goodsThumb img {
-	width: 200px;
-	height: 200px;
-}
-
-section#content div.goodsName {
-	padding: 10px 0;
-	text-align: center;
-}
-
-section#content div.goodsName a {
-	color: #000;
 }
 </style>
 </head>
@@ -213,18 +197,23 @@ section#content div.goodsName a {
 			<div id="container_box">
 
 				<section id="content">
-					<ul>
-						<c:forEach items="${list}" var="list">
-							<li>
-								<div class="goodsThumb">
-									<img src="${list.gdsThumbImg}">
-								</div>
-								<div class="goodsName">
-									<a href="/shop/view?n=${list.gdsNum}">${list.gdsName}</a>
-								</div>
-							</li>
-						</c:forEach>
-					</ul>
+					<form role="form" method="post" autocomplete="off">
+						<p>
+							<label for="title">글 제목</label><input type="text" id="title"
+								name="title" />
+						</p>
+						<p>
+							<label for="content">글 내용</label>
+							<textarea id="content" name="content"></textarea>
+						</p>
+						<p>
+							<label for="writer">작성자</label><input type="text" id="writer"
+								name="writer" />
+						</p>
+						<p>
+							<button type="submit">작성</button>
+						</p>
+					</form>
 				</section>
 
 				<aside id="aside">

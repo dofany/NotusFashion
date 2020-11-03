@@ -102,11 +102,19 @@ section#container {
 	
 }
 
-aside#aside h3 {
+aside#aside .menu1 {
 	font-size: 22px;
 	margin-bottom: 20px;
 	text-align: center;
 }
+
+
+aside#aside .menu2 {
+	font-size: 22px;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
 
 aside#aside li {
 	font-size: 16px;
@@ -132,6 +140,7 @@ aside#aside li:hover {
 	background: #eee;
 }
 
+
 aside#aside li>ul.low {
 	display: none;
 	position: absolute;
@@ -154,6 +163,12 @@ aside#aside li:hover>ul.low li a:hover {
 
 aside#aside li>ul.low li {
 	width: 180px;
+}
+aside#aside li>ul.low {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 180px;
 }
 
 footer#footer {
@@ -183,7 +198,7 @@ footer#footer div#footer_box {
 		<section id="container">
 			<div id="container_box">
 
-				<section id="content">본문 영역</section>
+				<section id="content">Dofany</section>
 
 				<aside id="aside">
 					<%@ include file="include/aside.jsp"%>

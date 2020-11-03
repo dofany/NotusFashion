@@ -5,6 +5,12 @@
 <title>NotusFashion</title>
 <style>
 
+.input-group {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+
 body {
 	margin: 0;
 	padding: 0;
@@ -60,16 +66,6 @@ section#content {
 	margin : -50px 0 0 -50px;
 	
 }
-.input_area{
-
-}
-#signup_btn{
-	
-	background: var(--naver-green-color);
-	color: black;
-	border: solid 1px var(--naver-green-border-color);
-}
-
 aside#aside {
 	float: left;
 	width: 180px;
@@ -119,7 +115,13 @@ section#container {
 	
 }
 
-aside#aside h3 {
+aside#aside .menu1 {
+	font-size: 22px;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+aside#aside .menu2 {
 	font-size: 22px;
 	margin-bottom: 20px;
 	text-align: center;
@@ -211,18 +213,18 @@ footer#footer div#footer_box {
 
 						<div class="input_area">
 							<label for="userPass">패스워드</label> <input type="password"
-								id="userPass" name="userPass" placeholder="패스워드를 입력해주세요" required="required" />
+								id="userPass" name="userPass"  required="required" />
 						</div>
 
 						<div class="input_area">
 							<label for="userName">닉네임</label> <input type="text"
-								id="userName" name="userName" placeholder="닉네임을 입력해주세요"
+								id="userName" name="userName" 
 								required="required" />
 						</div>
 
 						<div class="input_area">
 							<label for="userPhon">연락처</label> <input type="text"
-								id="userPhon" name="userPhon" placeholder="연락처를 입력해주세요"
+								id="userPhon" name="userPhon" 
 								required="required" />
 						</div>
 

@@ -1,9 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <html>
 <head>
 <title>NotusFashion</title>
 <style>
+.input_area {
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
 
 body {
 	margin: 0;
@@ -52,22 +57,12 @@ section#container {
 section#content {
 	float: right;
 	width: 90px;
-	position : absolute;
-	width : 100px;
-	height : 100px;
-	top : 30%;
-	left : 50%;
-	margin : -50px 0 0 -50px;
-	
-}
-.input_area{
-
-}
-#signup_btn{
-	
-	background: var(--naver-green-color);
-	color: black;
-	border: solid 1px var(--naver-green-border-color);
+	position: absolute;
+	width: 100px;
+	height: 100px;
+	top: 30%;
+	left: 50%;
+	margin: -50px 0 0 -50px;
 }
 
 aside#aside {
@@ -119,7 +114,13 @@ section#container {
 	
 }
 
-aside#aside h3 {
+aside#aside .menu1 {
+	font-size: 22px;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+aside#aside .menu2 {
 	font-size: 22px;
 	margin-bottom: 20px;
 	text-align: center;
@@ -198,7 +199,7 @@ footer#footer div#footer_box {
 		</nav>
 
 		<section id="container">
-			<div id="container_box">
+			<div id="container_box" class="wrapper">
 
 				<section id="content">
 					<form role="form" method="post" autocomplete="off">
@@ -218,7 +219,6 @@ footer#footer div#footer_box {
 						<c:if test="${msg == false}">
 							<p style="color: #f00;">로그인에 실패했습니다.</p>
 						</c:if>
-
 
 					</form>
 				</section>

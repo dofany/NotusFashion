@@ -108,7 +108,14 @@ section#container {
 	
 }
 
-aside#aside h3 {
+aside#aside .menu1 {
+	font-size: 22px;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+
+aside#aside .menu2 {
 	font-size: 22px;
 	margin-bottom: 20px;
 	text-align: center;

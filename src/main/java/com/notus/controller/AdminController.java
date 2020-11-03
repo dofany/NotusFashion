@@ -28,6 +28,7 @@ import com.notus.domain.GoodsViewVO;
 import com.notus.domain.OrderListVO;
 import com.notus.domain.OrderVO;
 import com.notus.domain.ReplyListVO;
+import com.notus.domain.ReplyVO;
 import com.notus.service.AdminService;
 import com.notus.utils.UploadFileUtils;
 
@@ -242,5 +243,14 @@ public class AdminController {
 		List<ReplyListVO> reply = adminService.allReply();
 
 		model.addAttribute("reply", reply);
+	}
+
+	@RequestMapping(value = "/shop/allReply", method = RequestMethod.POST)
+	public String postAllReply(ReplyVO reply) throws Exception {
+		logger.info("post all reply");
+
+		adminService.deleteReply(reply.getRepNum());
+
+		return "redirect:/admin/shop/allReply";
 	}
 }
