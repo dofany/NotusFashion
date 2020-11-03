@@ -6,6 +6,7 @@
 <html>
 <head>
 <title>NotusFashion</title>
+<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
 <style>
 body {
 	margin: 0;
@@ -189,34 +190,49 @@ footer#footer div#footer_box {
 				<%@ include file="../include/header.jsp"%>
 			</div>
 		</header>
-
 		<nav id="nav">
 			<div id="nav_box">
 				<%@ include file="../include/nav.jsp"%>
 			</div>
 		</nav>
-
-
 		<section id="container">
 			<div id="container_box">
 
 				<section id="content">
 					<form role="form" method="post" autocomplete="off">
+
 						<p>
-							<label for="title">글 제목</label><input type="text" id="title"
-								name="title" />
+							<label for="bno">글 번호</label> <input type="text" id="bno"
+								name="bno" value="${delete}" readonly="readonly" />
 						</p>
+
+						<p>삭제하시겠습니까?</p>
+
 						<p>
-							<label for="content">글 내용</label>
-							<textarea id="content" name="content"></textarea>
+
+							<button type="submit">예</button>
+							<br />
+							<button id="cancel_btn">아니오</button>
+
+
+							<script>
+								// 폼을 변수에 저장
+								var formObj = $("form[role='form']");
+
+								// 취소 버튼 클릭
+								$("#cancel_btn").click(
+										function() {
+											formObj.attr("action",
+													"/qna/read?bno="
+															+ $("#bno").val());
+											formObj.attr("method", "get");
+											formObj.submit();
+
+										});
+							</script>
+
 						</p>
-						<p>
-							<label for="writer">작성자</label><input type="text" id="writer"
-								name="writer" />
-						</p>
-						<p>
-							<button type="submit">작성</button>
-						</p>
+
 					</form>
 				</section>
 

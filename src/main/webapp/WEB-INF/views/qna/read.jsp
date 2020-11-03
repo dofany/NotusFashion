@@ -6,6 +6,7 @@
 <html>
 <head>
 <title>NotusFashion</title>
+<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
 <style>
 body {
 	margin: 0;
@@ -189,36 +190,67 @@ footer#footer div#footer_box {
 				<%@ include file="../include/header.jsp"%>
 			</div>
 		</header>
-
 		<nav id="nav">
 			<div id="nav_box">
 				<%@ include file="../include/nav.jsp"%>
 			</div>
 		</nav>
-
-
 		<section id="container">
 			<div id="container_box">
 
 				<section id="content">
 					<form role="form" method="post" autocomplete="off">
+
+						<p>
+							<label for="bno">글 번호</label><input type="text" id="bno"
+								name="bno" value="${read.bno}" readonly="readonly" />
+						</p>
+
 						<p>
 							<label for="title">글 제목</label><input type="text" id="title"
-								name="title" />
+								name="title" value="${read.title}" readonly="readonly" />
 						</p>
 						<p>
 							<label for="content">글 내용</label>
-							<textarea id="content" name="content"></textarea>
+							<textarea id="content" name="content" readonly="readonly">${read.content}</textarea>
 						</p>
 						<p>
 							<label for="writer">작성자</label><input type="text" id="writer"
-								name="writer" />
+								name="writer" value="${read.writer}" readonly="readonly" /><br />
+							<label>작성 날짜</label> <span><fmt:formatDate
+									value="${read.regDate}" pattern="yyyy-MM-dd" /></span>
 						</p>
 						<p>
-							<button type="submit">작성</button>
+							<button id="modity_btn">수정</button>
+							<button id="delete_btn">삭제</button>
+							<script>
+ 
+ // 폼을 변수에 저장
+ var formObj = $("form[role='form']");
+ 
+ // 수정 버튼 클릭
+ $("#modity_btn").click(function(){
+  
+  formObj.attr("action", "/qna/modify");
+  formObj.attr("method", "get");  
+  formObj.submit();     
+  
+ });
+ 
+ 
+ // 삭제 버튼 클릭
+ $("#delete_btn").click(function(){
+  
+  formObj.attr("action", "/qna/delete");
+  formObj.attr("method", "get");  
+  formObj.submit();
+  
+ });
+ </script>
 						</p>
 					</form>
 				</section>
+
 
 				<aside id="aside">
 					<%@ include file="../include/aside.jsp"%>

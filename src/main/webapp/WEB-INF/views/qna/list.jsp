@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
 <title>NotusFashion</title>
@@ -186,13 +189,11 @@ footer#footer div#footer_box {
 				<%@ include file="../include/header.jsp"%>
 			</div>
 		</header>
-
 		<nav id="nav">
 			<div id="nav_box">
 				<%@ include file="../include/nav.jsp"%>
 			</div>
 		</nav>
-
 		<section id="container">
 			<div id="container_box">
 
@@ -209,7 +210,7 @@ footer#footer div#footer_box {
 						<c:forEach items="${list}" var="list">
 							<tr>
 								<td>${list.bno}</td>
-								<td>${list.title}</td>
+								<td><a href="/qna/read?bno=${list.bno}">${list.title}</a></td>
 								<td>${list.writer}</td>
 								<td><fmt:formatDate value="${list.regDate}"
 										pattern="yyyy-MM-dd" /></td>
@@ -220,7 +221,6 @@ footer#footer div#footer_box {
 					</table>
 
 				</section>
-
 				<aside id="aside">
 					<%@ include file="../include/aside.jsp"%>
 				</aside>
