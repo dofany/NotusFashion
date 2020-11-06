@@ -225,10 +225,8 @@ footer#footer div#footer_box {
 							<button id="delete_btn">삭제</button>
 							<script>
  
- // 폼을 변수에 저장
  var formObj = $("form[role='form']");
  
- // 수정 버튼 클릭
  $("#modity_btn").click(function(){
   
   formObj.attr("action", "/qna/modify");
@@ -237,8 +235,7 @@ footer#footer div#footer_box {
   
  });
  
- 
- // 삭제 버튼 클릭
+
  $("#delete_btn").click(function(){
   
   formObj.attr("action", "/qna/delete");

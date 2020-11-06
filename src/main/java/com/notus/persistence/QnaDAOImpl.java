@@ -9,7 +9,9 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.notus.domain.Criteria;
 import com.notus.domain.QnaVO;
+import com.notus.domain.SearchCriteria;
 
 @Repository
 public class QnaDAOImpl implements QnaDAO{
@@ -46,6 +48,26 @@ public class QnaDAOImpl implements QnaDAO{
 	 @Override
 	 public List<QnaVO> list() throws Exception {
 	  return sql.selectList(namespace + ".list");
+	 }
+	 
+	 @Override
+	 public List<QnaVO> listPage(Criteria cri) throws Exception{
+		 return sql.selectList(namespace + ".listPage",cri);
+	 }
+	 
+	 @Override
+	 public int listCount() throws Exception{
+		 return sql.selectOne(namespace + ".listCount");
+	 }
+	 
+	 @Override
+	 public List<QnaVO> listSearch(SearchCriteria scri) throws Exception{
+		 return sql.selectList(namespace + ".listSearch", scri);
+	 }
+	 
+	 @Override
+	 public int countSearch(SearchCriteria scri) throws Exception{
+		 return sql.selectOne(namespace + ".countSearch",scri);
 	 }
 
 

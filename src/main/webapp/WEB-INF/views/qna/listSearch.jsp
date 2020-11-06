@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 
 <html>
 <head>
-<title>NotusFashion</title>
 <script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
+<title>NotusFashion</title>
 <style>
 body {
 	margin: 0;
@@ -199,51 +201,82 @@ footer#footer div#footer_box {
 			<div id="container_box">
 
 				<section id="content">
-					<form role="form" method="post" autocomplete="off">
+					<table>
+						<tr>
+							<th>글 번호</th>
+							<th>글 제목</th>
+							<th>작성자</th>
+							<th>작성일자</th>
+						</tr>
+						<!-- 목록 시작 -->
+						<c:forEach items="${list}" var="list">
+							<tr>
+								<td>${list.bno}</td>
+								<td><a href="/qna/read?bno=${list.bno}">${list.title}</a></td>
+								<td>${list.writer}</td>
+								<td><fmt:formatDate value="${list.regDate}"
+										pattern="yyyy-MM-dd" /></td>
+							</tr>
+						</c:forEach>
+						<!-- 목록 끝 -->
+					</table>
+					<div class="search">
+						<select name="searchType">
+							<option value="n"
+								<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>-----</option>
+							<option value="t"
+								<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
+							<option value="c"
+								<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
+							<option value="w"
+								<c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
+							<option value="tc"
+								<c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
+						</select> <input type="text" name="keyword" id="keywordInput"
+							value="${scri.keyword}" />
 
-						<p>
-							<label for="bno">글 번호</label> <input type="text" id="bno"
-								name="bno" value="${modify.bno}" readonly="readonly" />
-						</p>
+						<button id="searchBtn">검색</button>
 
+						<script>
+							$(function() {
+								$('#searchBtn')
+										.click(
+												function() {
+													self.location = "listSearch"
+															+ '${pageMaker.makeQuery(1)}'
+															+ "&searchType="
+															+ $(
+																	"select option:selected")
+																	.val()
+															+ "&keyword="
+															+ encodeURIComponent($(
+																	'#keywordInput')
+																	.val());
+												});
+							});
+						</script>
+					</div>
 
-						<p>
-							<label for="title">글 제목</label> <input type="text" id="title"
-								name="title" value="${modify.title}" />
-						</p>
-						<p>
-							<label for="content">글 내용</label>
-							<textarea id="content" name="content">${modify.content}</textarea>
-						</p>
-						<p>
-							<label for="writer">작성자</label> <input type="text" id="writer"
-								name="writer" value="${modify.writer}" readonly="readonly" /><br />
-							<label>작성 날짜</label> <span><fmt:formatDate
-									value="${modify.regDate}" pattern="yyyy-MM-dd" /></span>
-						</p>
-						<p>
-							<button type="submit">수정</button>
-							<button id="cancel_btn">취소</button>
+					<div>
+						<ul>
+							<c:if test="${pageMaker.prev}">
+								<li><a
+									href="listSearch${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
+							</c:if>
 
-							<script>
-								// 폼을 변수에 저장
-								var formObj = $("form[role='form']");
+							<c:forEach begin="${pageMaker.startPage}"
+								end="${pageMaker.endPage}" var="idx">
+								<li><a href="listSearch${pageMaker.makeSearch(idx)}">${idx}</a></li>
+							</c:forEach>
 
-								// 취소 버튼 클릭
-								$("#cancel_btn").click(
-										function() {
-											formObj.attr("action",
-													"/board/read?bno="
-															+ $("#bno").val());
-											formObj.attr("method", "get");
-											formObj.submit();
-										});
-							</script>
-						</p>
+							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+								<li><a
+									href="listSearch${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
+							</c:if>
+						</ul>
+					</div>
 
-					</form>
 				</section>
-
 				<aside id="aside">
 					<%@ include file="../include/aside.jsp"%>
 				</aside>

@@ -30,7 +30,8 @@
 <li class = "menu2"><a>고객센터</a>
 <ul class = "low">
 <li><a href = "/qna/write">작성</a>
-<li><a href = "/qna/list">목록</a>
+<li><a href = "/qna/listPage">목록</a>
+<li><a href = "/qna/listSearch">검색</a>
 </ul>
 
 
