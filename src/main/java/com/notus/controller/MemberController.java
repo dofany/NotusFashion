@@ -62,14 +62,16 @@ public class MemberController {
 		MemberVO login = service.signin(vo);
 		HttpSession session = req.getSession();
 
-		if (login == null) {
-			session.setAttribute("member", null);
-			rttr.addFlashAttribute("msg", false);
-			return "redirect:/member/signin";
+		boolean passMatch = passEncoder.matches(vo.getUserPass(), login.getUserPass());
+
+		if (login != null && passMatch) {
+			session.setAttribute("member", login);
 
 		} else {
 
-			session.setAttribute("member", login);
+			session.setAttribute("member", null);
+			rttr.addFlashAttribute("msg", false);
+			return "redirect:/member/signin";
 		}
 
 		return "redirect:/";
@@ -84,23 +86,54 @@ public class MemberController {
 
 		return "redirect:/";
 	}
-	
-	@RequestMapping(value = "/modify",method = RequestMethod.GET)
-	public void getModify() throws Exception{
+
+	@RequestMapping(value = "/modify", method = RequestMethod.GET)
+	public void getModify() throws Exception {
 		logger.info("get modify");
 	}
-	
+
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
 	public String postModify(HttpSession session, MemberVO vo) throws Exception {
-	 logger.info("post modify");
-	 
-	 service.modify(vo);
-	 
-	 session.invalidate();
-	 
-	 return "redirect:/";
+		logger.info("post modify");
+
+		String inputPass = vo.getUserPass();
+		String pass = passEncoder.encode(inputPass);
+		vo.setUserPass(pass);
+
+		service.modify(vo);
+
+		return "redirect:/";
 	}
-	
-	
+
+	@RequestMapping(value = "/withdrawal", method = RequestMethod.GET)
+	public void getWithdrawal() throws Exception {
+		logger.info("get withdrawal");
+
+	}
+
+	@RequestMapping(value = "/withdrawal", method = RequestMethod.POST)
+	public String postWithdrawal(HttpSession session, MemberVO vo, RedirectAttributes rttr) throws Exception {
+		logger.info("post withdrawal");
+
+		String inputPass = vo.getUserPass();
+		String pass = passEncoder.encode(inputPass);
+		vo.setUserPass(pass);
+
+		MemberVO member = (MemberVO) session.getAttribute("member");
+
+		String oldPass = member.getUserPass();
+		String newPass = vo.getUserPass();
+
+		if (!(oldPass.equals(newPass))) {
+			rttr.addFlashAttribute("msg", false);
+			return "redirect:/member/withdrawal";
+		}
+
+		service.withdrawal(vo);
+
+		session.invalidate();
+
+		return "redirect:/";
+	}
 
 }

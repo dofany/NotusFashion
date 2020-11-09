@@ -10,5 +10,8 @@ public interface MemberDAO {
 	public MemberVO signin(MemberVO vo) throws Exception;
 	
 	public void modify(MemberVO vo) throws Exception;
+	
+	public void withdrawal(MemberVO vo) throws Exception;
+
 
 }

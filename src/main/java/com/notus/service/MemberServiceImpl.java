@@ -9,28 +9,34 @@ import com.notus.domain.MemberVO;
 import com.notus.persistence.MemberDAO;
 
 @Service
-public class MemberServiceImpl implements MemberService{
-	
+public class MemberServiceImpl implements MemberService {
+
 	@Inject
 	private MemberDAO dao;
-	
+
 	@Override
-	public void signup(MemberVO vo) throws Exception{
+	public void signup(MemberVO vo) throws Exception {
 		dao.signup(vo);
 	}
-	
+
 	@Override
-	public MemberVO signin(MemberVO vo) throws Exception{
+	public MemberVO signin(MemberVO vo) throws Exception {
 		return dao.signin(vo);
 	}
+
 	@Override
-	public void signout(HttpSession session) throws Exception{
+	public void signout(HttpSession session) throws Exception {
 		session.invalidate();
 	}
-	
+
 	@Override
-	public void modify(MemberVO vo) throws Exception{
+	public void modify(MemberVO vo) throws Exception {
 		dao.modify(vo);
+	}
+
+	@Override
+	public void withdrawal(MemberVO vo) throws Exception {
+		dao.withdrawal(vo);
 	}
 
 }

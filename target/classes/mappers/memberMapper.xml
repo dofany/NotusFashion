@@ -22,8 +22,14 @@
 	<update id="modify">
 		update tbl_member
 		set
-		userPass = #{userPass}
+		userName = #{userName},
+		userPass =
+		#{userPass}
 		where userName = #{userName}
 	</update>
-
+	<delete id="withdrawal">
+		delete from myMember
+		where userId = #{userId}
+		and userPass = #{userPass}
+	</delete>
 </mapper>

@@ -203,28 +203,27 @@ footer#footer div#footer_box {
 				<section id="content">
 
 					<form role="form" method="post" autocomplete="off">
-						<h2>개인정보 수정</h2>
+						<h2>회원탈퇴</h2>
 						<p>
-							<label for="userName">닉네임</label> <input type="text"
-								id="userName" name="userName" required="required"
-								value="${member.userName}" />
+							<label for="userId">아이디</label> <input type="text" id="userName"
+								name="userName" value="${member.userId}" />
 						</p>
 						<p>
-							<label for="userPass">새로운 패스워드</label> <input type="password"
+							<label for="userPass">패스워드</label> <input type="password"
 								id="userPass" name="userPass" />
 						</p>
 
-						<button type="submit">회원정보 수정</button>
+						<button type="submit">회원탈퇴</button>
 						<p>
 
 							<button type="button" onclick="location.href='/'">취소</button>
 						</p>
-						<p>
-							<button type="button" onclick="location.href='/member/withdrawal'">회원탈퇴</button>
-							
-						</p>
 
 					</form>
+					
+					<c:if test = "${msg==false }">
+					<p>비밀번호가 틀렸습니다.</p>
+					</c:if>
 				</section>
 
 				<aside id="aside">
