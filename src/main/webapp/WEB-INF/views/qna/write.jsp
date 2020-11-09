@@ -201,6 +201,7 @@ footer#footer div#footer_box {
 			<div id="container_box">
 
 				<section id="content">
+				<c:if test ="$(msg!='login_error')">
 					<form role="form" method="post" autocomplete="off">
 						<p>
 							<label for="title">글 제목</label><input type="text" id="title"
@@ -218,6 +219,13 @@ footer#footer div#footer_box {
 							<button type="submit">작성</button>
 						</p>
 					</form>
+					</c:if>
+					
+					<c:if test = "$(msg == 'login_error')">
+					<p>로그인 후 글 작성</p>
+					<p><a href = "/">홈으로</a></p>
+					</c:if>
+					
 				</section>
 
 				<aside id="aside">

@@ -13,7 +13,7 @@
 			<li><a href="/admin/index">관리자 화면</a></li>
 		</c:if>
 
-		<li>${member.userName}</li>
+		<li><a href="/member/modify">${member.userName}</a></li>
 		<li><a href="/shop/cartList">장바구니</a></li>
 		<li><a href="/shop/orderList">주문화면</a></li>
 		<li><a href="/member/signout">로그아웃</a></li>

@@ -47,13 +47,15 @@
 	<select id="listSearch" resultType="com.notus.domain.QnaVO"
 		parameterType="com.notus.domain.SearchCriteria">
 		select bno, title, content, writer, regDate, viewCnt
-		from (select bno,
-		title, content, writer, regDate, viewCnt, row_number() over(order by
-		bno desc) as rNum from tbl_board
+		from(select bno, title, content, writer, regDate, viewCnt, row_number()
+		over(order by bno desc) as rNum from tbl_board
 		<include refid="search"></include>
-		) mb where rNum between #{rowStart} and #{rowEnd} order by bno desc
+		) mb 
+		
+		where rNum between #{rowStart} and #{rowEnd} order by bno desc
+		
 	</select>
-
+	
 	<select id="countSearch" resultType="int">
 		select count(bno)
 		from tbl_board
@@ -64,15 +66,18 @@ where bno > 0
 		<include refid="search"></include>
 
 	</select>
-
+	
 	<sql id="search">
 		<if test="searchType != null">
-			<if test="searchType == 't'.toString()">and title like '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'c'.toString()">and content like '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'w'.toString()">and writer like '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'tc'.toString()">and (title like '%' || #{keyword} || '%') or (content
+			<if test="searchType == 't'.toString()">where title like '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'c'.toString()">where content like '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'w'.toString()">where writer like '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'tc'.toString()">where (title like '%' || #{keyword} || '%') or (content
 				like '%' || #{keyword} || '%')</if>
 		</if>
 	</sql>
+	
+
+
 
 </mapper>

@@ -84,5 +84,23 @@ public class MemberController {
 
 		return "redirect:/";
 	}
+	
+	@RequestMapping(value = "/modify",method = RequestMethod.GET)
+	public void getModify() throws Exception{
+		logger.info("get modify");
+	}
+	
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public String postModify(HttpSession session, MemberVO vo) throws Exception {
+	 logger.info("post modify");
+	 
+	 service.modify(vo);
+	 
+	 session.invalidate();
+	 
+	 return "redirect:/";
+	}
+	
+	
 
 }

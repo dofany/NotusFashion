@@ -1,13 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
 <title>NotusFashion</title>
-<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
 <style>
+
+.input-group {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+
 body {
 	margin: 0;
 	padding: 0;
@@ -54,9 +57,15 @@ section#container {
 
 section#content {
 	float: right;
-	width: 700px;
+	width: 90px;
+	position : absolute;
+	width : 100px;
+	height : 100px;
+	top : 30%;
+	left : 50%;
+	margin : -50px 0 0 -50px;
+	
 }
-
 aside#aside {
 	float: left;
 	width: 180px;
@@ -166,13 +175,6 @@ aside#aside li>ul.low li {
 	width: 180px;
 }
 
-aside#aside li>ul.low {
-	display: none;
-	position: absolute;
-	top: 0;
-	left: 180px;
-}
-
 footer#footer {
 	margin-top: 100px;
 	border-radius: 50px 50px 0 0;
@@ -190,48 +192,38 @@ footer#footer div#footer_box {
 				<%@ include file="../include/header.jsp"%>
 			</div>
 		</header>
+
 		<nav id="nav">
 			<div id="nav_box">
 				<%@ include file="../include/nav.jsp"%>
 			</div>
 		</nav>
+
 		<section id="container">
 			<div id="container_box">
-
+	
 				<section id="content">
+				
 					<form role="form" method="post" autocomplete="off">
+						<h2>개인정보 수정</h2>
 
+						<div class="input_area">
+							<label for="userName">닉네임</label> <input type="text"
+								id="userName" name="userName" 
+								required="required" value = "${member.userName}" />
+						</div>
+
+						<div class="input_area">
+							<label for="userPass">새로운 패스워드</label> <input type="password"
+								id="userPass" name="userPass"  />
+						</div>
 						<p>
-							<label for="bno">글 번호</label> <input type="text" id="bno"
-								name="bno" value="${delete}" readonly="readonly" />
+						<button type="submit">회원정보 수정</button>
 						</p>
-
-						<p>삭제하시겠습니까?</p>
-
 						<p>
-
-							<button type="submit">예</button>
-							<br />
-							<button type= "button" id="cancel_btn">아니오</button>
-
-
-							<script>
-								// 폼을 변수에 저장
-								var formObj = $("form[role='form']");
-
-								// 취소 버튼 클릭
-								$("#cancel_btn").click(
-										function() {
-											self.location = "/qna/read?bno=${delete}"
-												   + "&page=${scri.page}"
-												   + "&perPageNum=${scri.perPageNum}"
-												   + "&searchType=${scri.searchType}"
-												   + "&keyword=${scri.keyword}";
-
-										});
-							</script>
-
+						<button type = "button" onclick="location.href='/'">처음으로</button>
 						</p>
+						
 
 					</form>
 				</section>

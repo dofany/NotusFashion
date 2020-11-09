@@ -226,18 +226,18 @@ footer#footer div#footer_box {
 							<button id="cancel_btn">취소</button>
 
 							<script>
-								// 폼을 변수에 저장
 								var formObj = $("form[role='form']");
 
 								// 취소 버튼 클릭
-								$("#cancel_btn").click(
-										function() {
-											formObj.attr("action",
-													"/board/read?bno="
-															+ $("#bno").val());
-											formObj.attr("method", "get");
-											formObj.submit();
-										});
+								$("#cancel_btn")
+										.click(
+												function() {
+													self.location = "/qna/read?bno=${modify.bno}"
+															+ "&page=${scri.page}"
+															+ "&perPageNum=${scri.perPageNum}"
+															+ "&searchType=${scri.searchType}"
+															+ "&keyword=${scri.keyword}";
+												});
 							</script>
 						</p>
 

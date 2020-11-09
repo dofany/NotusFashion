@@ -19,4 +19,11 @@
 		from tbl_member where userId = #{userId}
 	</select>
 
+	<update id="modify">
+		update tbl_member
+		set
+		userPass = #{userPass}
+		where userName = #{userName}
+	</update>
+
 </mapper>

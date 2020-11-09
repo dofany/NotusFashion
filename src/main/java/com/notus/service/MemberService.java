@@ -11,4 +11,6 @@ public interface MemberService {
 	public MemberVO signin(MemberVO vo) throws Exception;
 	
 	public void signout(HttpSession session) throws Exception;
+	
+	public void modify(MemberVO vo) throws Exception;
 }

@@ -8,6 +8,18 @@
 <html>
 <head>
 <script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- 부가적인 테마 -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
 <title>NotusFashion</title>
 <style>
 body {
@@ -201,18 +213,29 @@ footer#footer div#footer_box {
 			<div id="container_box">
 
 				<section id="content">
-					<table>
-						<tr>
-							<th>글 번호</th>
-							<th>글 제목</th>
-							<th>작성자</th>
-							<th>작성일자</th>
-						</tr>
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>글 번호</th>
+								<th>글 제목</th>
+								<th>작성자</th>
+								<th>작성일자</th>
+							</tr>
+						</thead>
 						<!-- 목록 시작 -->
 						<c:forEach items="${list}" var="list">
 							<tr>
 								<td>${list.bno}</td>
-								<td><a href="/qna/read?bno=${list.bno}">${list.title}</a></td>
+								<%-- <td><a href="/board/read?bno=${list.bno}">${list.title}</a></td> --%>
+
+								<td><a
+									href="/qna/read?bno=${list.bno}&
+										page=${scri.page}&
+										perPageNum=${scri.perPageNum}&
+										searchType=${scri.searchType}&
+										keyword=${scri.keyword}">${list.title}</a>
+								</td>
+
 								<td>${list.writer}</td>
 								<td><fmt:formatDate value="${list.regDate}"
 										pattern="yyyy-MM-dd" /></td>
@@ -220,22 +243,32 @@ footer#footer div#footer_box {
 						</c:forEach>
 						<!-- 목록 끝 -->
 					</table>
-					<div class="search">
-						<select name="searchType">
-							<option value="n"
-								<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>-----</option>
-							<option value="t"
-								<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
-							<option value="c"
-								<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
-							<option value="w"
-								<c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
-							<option value="tc"
-								<c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
-						</select> <input type="text" name="keyword" id="keywordInput"
-							value="${scri.keyword}" />
 
-						<button id="searchBtn">검색</button>
+					<div class="search row">
+						<div class="col-xs-2 col-sm-2">
+							<select name="searchType" class="form-control">
+								<option value="n"
+									<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>-----</option>
+								<option value="t"
+									<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
+								<option value="c"
+									<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
+								<option value="w"
+									<c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
+								<option value="tc"
+									<c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
+							</select>
+						</div>
+
+						<div class="col-xs-10 col-sm-10">
+							<div class="input-group">
+								<input type="text" name="keyword" id="keywordInput"
+									value="${scri.keyword}" class="form-control" /> <span
+									class="input-group-btn">
+									<button id="searchBtn" class="btn btn-default">검색</button>
+								</span>
+							</div>
+						</div>
 
 						<script>
 							$(function() {
@@ -257,8 +290,9 @@ footer#footer div#footer_box {
 						</script>
 					</div>
 
-					<div>
-						<ul>
+
+					<div class="col-md-offset-3">
+						<ul class="pagination">
 							<c:if test="${pageMaker.prev}">
 								<li><a
 									href="listSearch${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
@@ -266,7 +300,10 @@ footer#footer div#footer_box {
 
 							<c:forEach begin="${pageMaker.startPage}"
 								end="${pageMaker.endPage}" var="idx">
-								<li><a href="listSearch${pageMaker.makeSearch(idx)}">${idx}</a></li>
+								<li
+									<c:out value="${pageMaker.cri.page == idx ? 'class=active' : ''}"/>>
+									<a href="listSearch${pageMaker.makeSearch(idx)}">${idx}</a>
+								</li>
 							</c:forEach>
 
 							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
@@ -275,6 +312,7 @@ footer#footer div#footer_box {
 							</c:if>
 						</ul>
 					</div>
+
 
 				</section>
 				<aside id="aside">
