@@ -28,7 +28,7 @@
 		where userName = #{userName}
 	</update>
 	<delete id="withdrawal">
-		delete from myMember
+		delete from tbl_member
 		where userId = #{userId}
 		and userPass = #{userPass}
 	</delete>

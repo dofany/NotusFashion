@@ -119,9 +119,9 @@ public class MemberController {
 		String pass = passEncoder.encode(inputPass);
 		vo.setUserPass(pass);
 
-		MemberVO member = (MemberVO) session.getAttribute("member");
+		vo = (MemberVO) session.getAttribute("member");
 
-		String oldPass = member.getUserPass();
+		String oldPass = vo.getUserPass();
 		String newPass = vo.getUserPass();
 
 		if (!(oldPass.equals(newPass))) {

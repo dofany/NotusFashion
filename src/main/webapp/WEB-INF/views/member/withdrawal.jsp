@@ -216,12 +216,12 @@ footer#footer div#footer_box {
 						<button type="submit">회원탈퇴</button>
 						<p>
 
-							<button type="button" onclick="location.href='/'">취소</button>
+							<button type="button" onclick="location.href='/member/modify'">취소</button>
 						</p>
 
 					</form>
 					
-					<c:if test = "${msg==false }">
+					<c:if test = "${msg ==false }">
 					<p>비밀번호가 틀렸습니다.</p>
 					</c:if>
 				</section>
